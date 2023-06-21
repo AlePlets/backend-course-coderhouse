@@ -22,7 +22,15 @@ app.use('/', viewsRouter);
 socketServer.on('connection', socket =>{ 
     console.log('Novo Cliente conectado');
     //socket.on('message', data=>) significa "ouvir quando o socket conectado enviar um envento ipo message. Assim que um evento desse tipo for recebido, com os 'data' que foi enviado, envie-o para o console
-    socket.on('message', data=>{
+    socket.on('message', data=>{ //servidor escuta
         console.log(data)
     });
 }); 
+
+socket.emit('event_for_individual_socket', 'Está mensagem só deve ser recebida pelo socket');
+
+socket.broadcast.emit('event_for_everyone_but_the_current_socket', 'Este evento será visto por todos sockets conectados, exceto o socket atual onde a msg foi enviada.');
+
+socketServer.emit('event_for_all', 'Está msg é recebida por todos sockets conectados');
+
+
