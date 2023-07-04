@@ -1,0 +1,38 @@
+<h2>Lista de Produtos em Tempo Real</h2>
+<ul id="product-list">
+  {{#each products}}
+    <li>{{this}}</li>
+  {{/each}}
+</ul>
+
+<form id="add-product-form">
+  <input type="text" id="product-name" placeholder="Nome do Produto">
+  <button type="submit">Adicionar Produto</button>
+</form>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  // Conectar ao servidor Socket.IO
+  var socket = io();
+
+  // Atualizar a lista de produtos quando houver um evento "updateProducts"
+  socket.on('updateProducts', function(products) {
+    var productList = document.getElementById('product-list');
+    productList.innerHTML = '';
+
+    products.forEach(function(product) {
+      var li = document.createElement('li');
+      li.textContent = product;
+      productList.appendChild(li);
+    });
+  });
+
+  // Enviar um novo produto para o servidor quando o formulário for enviado
+  var addProductForm = document.getElementById('add-product-form');
+  addProductForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var productName = document.getElementById('product-name').value;
+    socket.emit('addProduct', productName);
+    addProductForm.reset();
+  });
+</script>
