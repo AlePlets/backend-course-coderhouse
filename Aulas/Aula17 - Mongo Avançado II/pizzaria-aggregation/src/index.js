@@ -30,8 +30,12 @@ const environment = async() => {
         await mongoose.connect(mongoAtlasUri);
     
         let listaPedidos = await orderModel.aggregate([
-            { $match: {tamanho: "media"} }, 
-            { $group: {_id: "$nome", total: {$sum: "$quantidade"}}}
+            { $match: {tamanho: "media"} },
+            { $group: { _id: "$nome", quantidadeTotal: { $sum: "$quantidade" }}},
+            { $sort: { quantidadeTotal: -1 }},
+            { $group: { _id:1, pedidos: { $push: "$$ROOT"}} },
+            { $project: { _id: 0, pedidos: "$pedidos" }},
+            { $merge: { into: 'relatorios'}}
         ])
         console.log(listaPedidos);
     }
