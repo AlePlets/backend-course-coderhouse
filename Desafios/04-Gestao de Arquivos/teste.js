@@ -82,7 +82,7 @@ const productId = 1;
 const product = productManager.getProductById(productId);
 console.log(product);
 
-// Atualizar um produto
+// Atualizar um produto!!
 const updatedProduct = {
   title: 'Sopa Atualizada',
   price: 99,
