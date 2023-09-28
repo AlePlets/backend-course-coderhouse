@@ -1,7 +1,0 @@
-{
-    "nome": {{$randomFirstName}},
-    "sobrenome": {{$randomLastName}},
-    "email": {{$randomEmail}},
-    "idade": {{$randomAge}},
-    "senha": {{$randomPassword}}
-}
