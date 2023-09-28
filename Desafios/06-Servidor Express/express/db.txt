@@ -1,1 +1,0 @@
-[{"name":"arroz","preco":"12.3"},{"name":"arroz","preco":"12.3"}]
