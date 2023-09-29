@@ -1,0 +1,10 @@
+<h1>Produtos</h1>
+<p>Bem-vindo(a), <%= user.email %>!</p>
+<% if (user.role === 'admin') { %>
+  <p>Você é um administrador!</p>
+<% } else { %>
+  <p>Você é um usuário!</p>
+<% } %>
+<form method="POST" action="/logout">
+  <button type="submit">Logout</button>
+</form>

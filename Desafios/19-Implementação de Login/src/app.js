@@ -19,7 +19,7 @@ app.use(passport.session());
 
 app.set('view engine', 'ejs');
 
-// Simulando um wwwwwwwwww de dados de usuários
+// Simulando um banco de dados de usuários
 const users = [
   {
     id: 1,
